@@ -1,0 +1,362 @@
+---
+title: "Jolliano R-15tasks"
+output: word_document
+---
+
+Importing the necessary libraries:
+```{r}
+library(ggplot2)
+library(dplyr)
+library(plyr)
+```
+
+## TASK 1: DESCRIBING THE PLANKTON DATASET USING UNIVARIATE ANALYSIS
+
+Importing the plankton dataset
+```{r}
+plankton <- read.csv("plankton.csv")
+```
+
+Viewing the plankton dataset
+
+```{r}
+View(plankton)
+```
+
+Beginning the univariate analysis. Starting with the Pseudonitzschia.A.Sp column.
+Obtaining the mean value of the Pseudonitzschia.A.Sp
+
+```{r}
+meanPseu <- (mean(plankton$Pseudonitzschia.A.Sp))
+
+paste ("The mean value of the Pseudonitzschia.A.Sp is", meanPseu)
+```
+
+Obtaining the median value of the Pseudonitzschia.A.Sp
+
+```{r}
+medianPseu <- (median(plankton$Pseudonitzschia.A.Sp))
+
+paste("The median value of the Pseudonitzschia.A.Sp is", medianPseu)
+```
+
+Obtaining the Interquartile Range of the Pseudonitzschia.A.Sp
+
+```{r}
+iqrPseu <- (IQR(plankton$Pseudonitzschia.A.Sp))
+
+paste ("The Interquartile Range of the Pseudonitzschia.A.Sp is", iqrPseu)
+```
+
+Obtaining the Range of the Pseudonitzschia.A.Sp
+
+```{r}
+rangePseu <- (max(plankton$Pseudonitzschia.A.Sp) - min(plankton$Pseudonitzschia.A.Sp))
+
+paste ("The range of the Pseudonitzschia.A.Sp is", rangePseu)
+```
+
+Obtaining the Standard Deviation of the Pseudonitzschia.A.Sp
+
+```{r}
+sdPseu <- sd(plankton$Pseudonitzschia.A.Sp)
+
+paste ("The range of the Pseudonitzschia.A.Sp is", sdPseu)
+```
+
+Analysis of the Alexandrium.Sp column
+
+Obtaining the mean value of the Alexandrium.Sp
+
+```{r}
+meanAlex <- (mean(plankton$Alexandrium.Sp))
+
+paste ("The mean value of the Alexandrium.Sp is", meanAlex)
+```
+
+Obtaining the median value of the Alexandrium.Sp
+
+```{r}
+medianAlex <- (median(plankton$Alexandrium.Sp))
+
+paste("The median value of the Alexandrium.Sp is", medianAlex)
+```
+
+Obtaining the Interquartile Range of the Alexandrium.Sp
+
+```{r}
+iqrAlex <- (IQR(plankton$Alexandrium.Sp))
+
+paste ("The Interquartile Range of the Alexandrium.Sp is", iqrAlex)
+```
+
+Obtaining the Range of the Alexandrium.Sp
+
+```{r}
+rangeAlex <- (max(plankton$Alexandrium.Sp) - min(plankton$Alexandrium.Sp))
+
+paste ("The range of the Alexandrium.Sp is", rangeAlex)
+```
+
+Obtaining the Standard Deviation of the Alexandrium.Sp
+
+```{r}
+sdAlex <- sd(plankton$Alexandrium.Sp)
+
+paste ("The standard deviation of the Alexandrium.Sp is", sdAlex)
+```
+
+Analysis of the Robgordia.Sp column
+
+Obtaining the mean value of the Robgordia.Sp
+
+```{r}
+meanRobg <- (mean(plankton$Robgordia.Sp))
+
+paste ("The mean value of the Robgordia.Sp is", meanRobg)
+```
+
+Obtaining the median value of the Robgordia.Sp
+
+```{r}
+medianRobg <- (median(plankton$Robgordia.Sp))
+
+paste("The median value of the Robgordia.Sp is", medianRobg)
+```
+
+Obtaining the Interquartile Range of the Robgordia.Sp
+
+```{r}
+iqrRobg <- (IQR(plankton$Robgordia.Sp))
+
+paste ("The Interquartile Range of the Robgordia.Sp is", iqrRobg)
+```
+
+Obtaining the Range of the Robgordia.Sp
+
+```{r}
+rangeRobg <- (max(plankton$Robgordia.Sp) - min(plankton$Robgordia.Sp))
+
+paste ("The range of the Robgordia.Sp is", rangeRobg)
+```
+
+Obtaining the Standard Deviation of the Robgordia.Sp
+
+```{r}
+sdRobg <- sd(plankton$Robgordia.Sp)
+
+paste ("The standard deviation of the Robgordia.Sp is", sdRobg)
+```
+
+Analysing the Water Temp column:
+
+Obtaining the average Water temperature and the water temperature range:
+```{r}
+paste("The average water temperature is", mean(plankton$Water.Temp))
+paste("The range of water temperatures is ", (max(plankton$Water.Temp) - min(plankton$Water.Temp)))
+```
+
+Analysing the dataset using the Species column to determine how many samples of each Specie is present in the plankton dataset:
+```{r}
+table(plankton$Species)
+```
+
+Analysing the dataset by the Region in which they are located:
+```{r}
+table(plankton$Region)
+```
+
+Analysing the samples by the Site in which they are located:
+```{r}
+table(plankton$Site)
+```
+
+Analysing the dataset by the year in which each sample began:
+```{r}
+table(plankton$year)
+```
+
+
+## TASK 2: CREATING BOXPLOTS TO SHOW THE DISTRIBUTION OF PSEUDONITZSCHIA AND THE WATER.TEMP
+
+```{r}
+ggplot(plankton, aes(y=Pseudonitzschia.A.Sp)) + geom_boxplot() + labs (title = "The Distribution of Pseudonitzschia", y = "Cells per litre") + coord_flip() + theme(axis.text.y = element_blank())
+
+ggplot(plankton, aes(y=Water.Temp)) + geom_boxplot() + labs (title = "The Distribution of Water Temperature", y = "Degree Celsius") + coord_flip() + theme(axis.text.y = element_blank())
+```
+Comment: The boxplot identifies 5 important points in the data from which other conclusions can be drawn. These points are the median, minimun, maximum, first quartile and third quartile. From the boxplots above, it is observed that 50 of the Pseudonitzschia samples are between 1350 cells per litre to 4200 cells per litre and 50% of the samples have a water temperature between 9.7 to 14.9.
+
+
+
+## TASK 3: COMPARING PSEUDONITZSCHIA FOR 2021 TO PREVIOUS YEARS
+
+Creating a subset "planktonA" containing only samples collected in 2021 and analysing the Pseudonitzschia:
+```{r}
+planktonA <- (plankton[plankton$year == "2021",])
+summary(planktonA$Pseudonitzschia.A.Sp)
+```
+
+Creating a subset "planktonB" containing samples collected prior to 2021 and analysing the Pseudonitzschia:
+```{r}
+planktonB <- (plankton[plankton$year != "2021",])
+summary(planktonB$Pseudonitzschia.A.Sp)
+```
+
+Comment: The average Cells per litre value of the Pseudonitzschia in 2021 is higher than in the previous years. There is also less variation in the 2021 samples than in the previous years.
+
+
+## TASK 4: Produce two histograms, one showing an attribute with a skewed distribution and one showing an attribute with a normal distribution.
+
+The Water.Temp attribute has a skewed distribution which is seen in the difference between its median and its mean. The histogram representing it:
+```{r}
+ggplot(plankton, aes(x=Water.Temp)) + geom_histogram(binwidth = 1, color = "black", fill="blue") + labs(title = "Histogram of the skewed distribution of the Water.Temp attribute.")
+```
+
+The year attribute has a normal distribution. Its median is the same as its mean.
+```{r}
+ggplot(plankton, aes(x=year)) + geom_histogram(binwidth = 1, color = "black", fill="blue") + labs(title = "Histogram of the normal distribution of the year attribute.")
+```
+
+## TASK 5: CREATING A BARPLOT FOR THE SPECIES ATTRIBUTE
+
+```{r}
+ggplot(plankton, aes(x=Species)) + geom_bar(color= "cyan", fill = "blue") + labs(title = "The barplot for the Species Attribute")
+```
+
+Comment: A large amount of the samples are of the Common mussels species and the Razors specie is the least present in the dataset.
+
+## TASK 6: PRODUCING A PIE CHART FOR AN ATTRIBUTE
+
+The Region attribute will be used to make a dataframe from which the Pie Chart showing its distribution will be produced.
+```{r}
+pieRegion <- count(plankton$Region)
+names(pieRegion) <- c("Region","Freq")
+pieRegion <- arrange(pieRegion,desc(Region))
+pieRegion <-  mutate(pieRegion, positionLabel = cumsum(pieRegion$Freq) - 0.5*pieRegion$Freq)
+```
+
+Plotting the Pie Chart:
+```{r}
+ggplot(pieRegion,  aes(x="", y= Freq, fill = Region)) + geom_bar(width = 1, stat="identity") + coord_polar("y", start=0)
+```
+
+## TASK 7: SHOW VALUES OF ROBGORDIA.SP AGAINST VALUES OF PSEUDONITZSCHIA.A.SP 
+WHERE THE SPECIES IS EITHER COMMON MUSSELS OR PACIFIC OYSTERS
+
+A "plankton7" dataset containing only rows in the plankton dataset where the Species is either Common mussels or Pacific oysters.
+```{r}
+plankton7 <- plankton[plankton$Species %in% c('Common mussels', 'Pacific oysters'),]
+ggplot(plankton7, aes(x=Robgordia.Sp, y = Pseudonitzschia.A.Sp, color = Species)) + geom_line()
+```
+For samples in which there is a very high presence of Pseudonitzschia cells, there are no Rogbordia cells present.
+
+
+## TASK 8: SHOW ALEXANDRIUM.SP IN DIFFERENT REGIONS BY FARMING SPECIES
+```{r}
+ggplot(plankton, aes(y=Alexandrium.Sp, x = Region, color = Species)) + geom_line(size = 3)
+```
+
+There are 3 regions in which there are no Alexandrium.Sp in the samples; CESUB, FC and NAC. Also, the Common mussels are the highest species found among the Alexandrium.Sp
+
+## TASK 9: FIND A PAIR OF PLANKTON SPECIES WHICH ARE CORRELATED AND A PAIR WHICH ARE NOT CORRELATED.
+
+```{r}
+print(cor(plankton[, c('Pseudonitzschia.A.Sp','Alexandrium.Sp', 'Robgordia.Sp')]));
+```
+The Pseudonitzschia and Robgordia Species are correlated while the Pseudonitzschia and Alexandrium species are not correlated. This conclusion is drawn from the values of the cor() function carried out on the Species. The closer the value is to 1, the more correlated the variables.
+
+## TASK 10: PRODUCE A LINE PLOT WHICH SHOWS THE WATER TEMPERATURE (Y AXIS) AGAINST THE SAMPLE INDEX (X AXIS), FOR SAMPLES OF COMMON COCKLES AND PACIFIC OYSTERS.
+
+A "plankton10" dataset containing only rows in the plankton dataset where the Species is either Common cockles or Pacific oysters.
+
+```{r}
+plankton10 <- plankton[plankton$Species %in% c('Common cockles', 'Pacific oysters'),]
+```
+
+The plot is then generated using the chunk:
+```{r}
+ggplot(plankton10, aes(Sample, color = Species)) + geom_line(aes(y = Water.Temp ))
+```
+
+## TASK 11: PRODUCE A LINEAR REGRESSION MODEL OF PSEUDONITZSCHIA.A.SP ON ROBGORDIA.SP FOR COMMON MUSSELS.
+
+Creating a dataset "planktonMussels" containing data from Common mussels samples only
+
+```{r}
+planktonMussels <- plankton[plankton$Species %in% c('Common mussels'),]
+```
+
+
+Creating a Linear Regression lmPseuByRob and viewing its summary so as to view its R-squared value
+
+```{r}
+lmPseuByRob = lm(Pseudonitzschia.A.Sp~Robgordia.Sp, data = planktonMussels)
+summary(lmPseuByRob)
+```
+
+Plotting the Linear Model and adding a line of best fit
+
+```{r}
+plot(Pseudonitzschia.A.Sp~Robgordia.Sp, data = planktonMussels)
+abline(lmPseuByRob)
+```
+
+Creating a dataframe named newRobgordia containing the new values and using the predict() to predict its corresponding Pseudonitzschia.A.Sp value
+
+```{r lmPseuByRob}
+newRobgordia<- data.frame(Robgordia.Sp=c(1000, 2500, 3000))
+predict(lmPseuByRob, newdata = newRobgordia)
+```
+Comment: The model is an appropriate model to illustrate and predict the relationship between the Pseudonitzschia and Robgordia Species. This is shown by the line of best fit and the spread of the residuals around it.
+
+This model can be used effectively to predict the amount of Robgordia.Sp present.
+
+## TASK 12: DATA FRAME CREATION AND CONFIDENCE INTERVAL CHECK
+
+Creating a dataframe "monthYearTemp" to store the unique months, years, and the mean of the water temperatures observed in the plankton dataset during that month-year period.
+
+```{r}
+monthYearTemp <- ddply(plankton, .(month,year), summarize, mean=mean(Water.Temp))
+```
+
+Checking if 12 is the mean at 99% confidence:
+```{r}
+t.test(monthYearTemp$mean,conf.level= .99)
+```
+The result of the test shows that 12 is not the mean at 99% confidence.
+I can say that 12.5 is not the mean temperature at 95% confidence.
+
+## TASK 13: IS WATER TEMPERATURE AFFECTED BY THE PERIOD OF THE YEAR
+
+Creating two subsets, one containing samples in the 1st half year and the other containing samples in the 2nd half year:
+```{r}
+plankton1stP <- plankton[plankton$period %in% c('1st half year'),]
+plankton2ndP <- plankton[plankton$period %in% c('2nd half year'),]
+```
+
+Running a test to compare the Water.Temp values in both subsets. A equal result from the test shows that the Water.Temp is not affected by the period while a diference in the result would show that the Water.Temp is affected by the period.
+
+```{r}
+t.test(plankton1stP$Water.Temp, plankton2ndP$Water.Temp, alternative = 'greater')
+```
+
+The difference in the average Water temperature for both halves of the year is very negligible and as such, the test does not confirm that Water.Temp is affected by the Period attribute.
+
+## TASK 14: ANOVA CONCERNS
+
+The ANOVA test assumes and requires data that is normally distributed. The Water.Temp data in the plankton dataset has a skewed distribution and so is not compatile with ANOVA. Also, homoscedasticity is absent as there is no equality of variance in the Water.Temp variable.
+
+## TASK 15: ALTERNATIVE DATA PLOTS
+
+The site attribute will be used for the creation of the plots in this task.
+The informative plot:
+```{r}
+ggplot(plankton, aes(x=year, color = year)) + geom_bar(stat="count")
+```
+
+The deficient plot:
+```{r}
+ggplot(plankton, aes(x=year, color = year)) + geom_line(stat="count") + theme(axis.title.x = element_blank(), axis.text.x=element_blank(),axis.title.y = element_blank(), axis.text.y=element_blank())
+```
+
+In comparison, the informative plot uses bars that easily show the difference in the Count values of each year. The plot is also appropriately labeled and ticked to make for easy reading. The deficient plot has no labels and as such, is impossible to read as there is no information on the variables being compared.
